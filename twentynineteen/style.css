@@ -6497,3 +6497,22 @@ svg {
 .gallery-item > div > a:focus {
   box-shadow: 0 0 0 2px #0073aa;
 }
+
+.contact-info {
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.contact-item {
+  float: left;
+  max-width: 50%;
+  flex:0 50%;
+}
+
+.contact-item >div {
+  margin: 15px 10px;
+  background-color: #eceff1;
+  padding: 5px 15px;
+}
+
+

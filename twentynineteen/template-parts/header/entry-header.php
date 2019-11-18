@@ -42,5 +42,42 @@ $discussion = ! is_page() && twentynineteen_can_show_post_thumbnail() ? twentyni
 			'</span>'
 		);
 	?>
+	<?php 
+		$release_date_value = esc_html( rwmb_meta( 'release-date' ) );
+
+		if (!empty($release_date_value)) {
+			$release_date_time_string = '<div><span class="release-date">Release Date: <time>%1$s</time></span></div>';
+			$release_date_time_string = sprintf( $release_date_time_string, date('F j, Y', $release_date_value) );
+			echo $release_date_time_string;
+		}
+		//m dd, y
+	?>
+	<?php 
+		$values = rwmb_meta( 'contact-information' );
+		$contacts = '';
+		foreach ( $values as $value ) {
+			$contact_name =  esc_html($value['name']);
+			$contact_phone = esc_html($value['phone']);
+			$contact_email =  esc_html($value['email']);
+
+			$contact_string = '';
+			if (!empty($contact_name)) {
+				$contact_string .= sprintf('<span class="contact_name">Contact Name: %1$s</span><br>',$contact_name);
+			}
+			if (!empty($contact_email)) {
+				$contact_string .= sprintf('<span class="contact_email">Contact Email: %1$s</span><br>',$contact_email);
+			}
+			if (!empty($contact_phone)) {
+				$contact_string .= sprintf('<span class="contact_phone">Contact Phone: %1$s</span><br>',$contact_phone);
+			}
+
+			if (!empty($contact_string)) {
+				$contacts .= sprintf('<div class="contact-item"><div>%1$s</div></div>',$contact_string);
+			}
+		}
+		if (!empty($contacts)) {
+			echo sprintf('<div class="contact-info">%1$s</div>',$contacts);
+		}
+	?>
 </div><!-- .entry-meta -->
 <?php endif; ?>

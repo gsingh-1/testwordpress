@@ -323,3 +323,47 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+function twentynineteen_release_date_meta_boxes( $meta_boxes ) {
+    $meta_boxes[] = array(
+        'title'  => 'Release Date Information',
+        'fields' => array(
+            array(
+                'id'   => 'release-date',
+                'name' => 'Release Date',
+				'type' => 'date',
+            ),
+		),
+	);
+    return $meta_boxes;
+}
+add_filter( 'rwmb_meta_boxes', 'twentynineteen_release_date_meta_boxes' );
+
+function twentynineteen_contact_information_meta_boxes( $meta_boxes ) {
+	$meta_boxes[] = array(
+        'title'  => 'Contact Information',
+        'fields' => array(
+			array(
+				'id'      => 'contact-information',
+				'name'    => 'Contact',
+				'type'    => 'fieldset_text',
+			
+				// Options: array of key => Label for text boxes
+				// Note: key is used as key of array of values stored in the database
+				'options' => array(
+					'name'    => 'Name',
+					'phone' => 'Phone',
+					'email'   => 'Email',
+				),
+			
+				// Is field cloneable?
+				'clone' => true,
+			),
+		),
+    );
+    return $meta_boxes;
+}
+add_filter( 'rwmb_meta_boxes', 'twentynineteen_contact_information_meta_boxes' );
+
+
+
